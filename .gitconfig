@@ -1,0 +1,18 @@
+[user]
+	name = Ruiwen Chua
+	email = ruiwen@thoughtmonkeys.com
+[color]
+	ui = always
+[alias]
+	st = status
+	ci = commit
+	br = branch
+	co = checkout
+	df = diff
+	lg = log --all --pretty=format:\"%C(yellow)%h%Creset %s %Cred%d%Creset [%C(green)%aN%Creset %C(blue)%ar%Creset]\"  --decorate --graph
+	#logo = log --decorate --oneline --graph --all #--pretty="%C(yellow)%h%Creset %s %Cred%d%Creset  [%C(green bold)%aN%Creset %C(blue)%ar%Creset]" 
+
+#[color "decorate"]
+#	current = cyan
+#	local = magenta
+#	remote = red
