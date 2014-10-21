@@ -5,7 +5,7 @@ if [ ! `which git` ]; then
   sudo apt-get install -y git
 fi
 
-if [! -d ~/dotfiles ]; then
+if [ ! -d ~/dotfiles ]; then
     git clone https://github.com/ruiwen/dotfiles.git
 fi
 
