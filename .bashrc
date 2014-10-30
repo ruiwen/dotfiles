@@ -105,7 +105,6 @@ export TERM=xterm-256color
 # Enable ssh-agent
 if [ -z "$SSH_AUTH_SOCK" ] ; then
   eval `ssh-agent -s`
-  ssh-add
 fi
 
 # Fix SSH Forward-Agent in tmux sessions
