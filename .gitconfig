@@ -8,7 +8,10 @@
 	ci = commit
 	br = branch
 	co = checkout
+	ap = add -p
 	df = diff
+	dc = diff --cached
+	mg = merge
 	lg = log --all --pretty=format:\"%C(yellow)%h%Creset %s %Cred%d%Creset [%C(green)%aN%Creset %C(blue)%ar%Creset]\"  --decorate --graph
 	#logo = log --decorate --oneline --graph --all #--pretty="%C(yellow)%h%Creset %s %Cred%d%Creset  [%C(green bold)%aN%Creset %C(blue)%ar%Creset]" 
 	td = "!f() { git lg  --since=midnight --author=\"$2\"; }; f"
