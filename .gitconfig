@@ -21,3 +21,5 @@
 #	current = cyan
 #	local = magenta
 #	remote = red
+[core]
+	editor = vim
