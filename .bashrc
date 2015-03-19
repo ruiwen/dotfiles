@@ -107,9 +107,14 @@ if [ -z "$SSH_AUTH_SOCK" ] ; then
   eval `ssh-agent -s`
 fi
 
+# Add desired keys after clearing the list
+# ssh-add ${HOME}/.ssh/otherprivatekey
+
 # Fix SSH Forward-Agent in tmux sessions
 # https://gist.github.com/martijnvermaat/8070533
 if [[ -S "$SSH_AUTH_SOCK" && ! -h "$SSH_AUTH_SOCK" ]]; then
     ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock;
 fi
 export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock;
+
+
