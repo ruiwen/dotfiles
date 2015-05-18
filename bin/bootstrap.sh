@@ -17,7 +17,7 @@ if [ -f ~/.bashrc ]; then
     mv ~/.bashrc ~/.bashrc.bak
 fi
 
-for f in pythonrc tmux.conf bashrc dir_colors gitconfig profile vim; do
+for f in pythonrc tmux.conf bashrc dir_colors gitconfig profile vim vimrc; do
     ln -s dotfiles/.${f} ~/.${f}
 done
 
