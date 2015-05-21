@@ -21,6 +21,10 @@ for f in pythonrc tmux.conf bashrc dir_colors gitconfig profile vim vimrc; do
     ln -s dotfiles/.${f} ~/.${f}
 done
 
+if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
+    git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+fi
+
 . ~/.profile
 . ~/.bashrc
 touch ~/.python_history
