@@ -29,6 +29,7 @@ Plugin 'plasticboy/vim-markdown'
 
 " Vimac
 Plugin 'andrep/vimacs'
+"Plugin 'maxbrunsfeld/vim-emacs-bindings'
 
 " Vim EasyMotion - http://vimawesome.com/plugin/easymotion
 Plugin 'Lokaltog/vim-easymotion'
@@ -37,7 +38,7 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'SirVer/ultisnips'
 
 " Snippets
-Plugin 'honza/vim-snippets'
+"Plugin 'honza/vim-snippets'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
