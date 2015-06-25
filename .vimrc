@@ -1,4 +1,5 @@
 
+set showcmd
 set smartindent
 set number
 syntax on
