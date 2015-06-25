@@ -29,7 +29,6 @@ Plugin 'plasticboy/vim-markdown'
 
 " Vimac
 Plugin 'andrep/vimacs'
-"Plugin 'maxbrunsfeld/vim-emacs-bindings'
 
 " Vim EasyMotion - http://vimawesome.com/plugin/easymotion
 Plugin 'Lokaltog/vim-easymotion'
@@ -54,6 +53,7 @@ autocmd Filetype python setlocal ts=4 sw=4 expandtab
 autocmd Filetype jade setlocal ts=2 sw=2 expandtab
 autocmd Filetype javascript setlocal ts=4 sw=4 expandtab
 autocmd Filetype nginx setlocal ts=2 sw=2 expandtab
+autocmd BufNewfile,BufRead *.coffee set filetype=coffee
 autocmd Filetype coffee setlocal ts=4 sw=4 expandtab
 
 
