@@ -5,6 +5,10 @@ if [ ! `which git` ]; then
   sudo apt-get install -y git
 fi
 
+if [ ! `which tmux` ]; then
+  sudo apt-get install -y tmux
+fi
+
 if [ ! -d ~/dotfiles ]; then
     git clone https://github.com/ruiwen/dotfiles.git
 fi
