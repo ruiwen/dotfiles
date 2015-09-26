@@ -30,7 +30,10 @@ Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 
 " Vimac
-Plugin 'andrep/vimacs'
+" Plugin 'andrep/vimacs'
+
+" vim-emacs-bindings
+Plugin 'maxbrunsfeld/vim-emacs-bindings'
 
 " Vim EasyMotion - http://vimawesome.com/plugin/easymotion
 Plugin 'Lokaltog/vim-easymotion'
