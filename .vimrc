@@ -2,6 +2,8 @@
 set showcmd
 set smartindent
 set number
+set cursorline
+
 syntax on
 colorscheme jellybeans
 
