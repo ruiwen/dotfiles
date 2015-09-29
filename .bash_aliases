@@ -1,15 +1,15 @@
- # alias gowork="export GOPATH=`pwd`;export OLDPATH=$PATH; export PATH=$PATH:$GOPATH/bin" 
- # alias gounwork="export PATH=$OLDPATH;unset GOPATH;unset OLDPATH" 
+ # alias gowork="export GOPATH=`pwd`;export OLDPATH=$PATH; export PATH=$PATH:$GOPATH/bin"
+ # alias gounwork="export PATH=$OLDPATH;unset GOPATH;unset OLDPATH"
 
 
-gowork () {
+function gowork () {
   export GOPATH=`pwd`
   export OLDPATH=$PATH
-  export PATH=$PATH:$GOPATH/bin	
+  export PATH=$PATH:$GOPATH/bin
 }
 
-gounwork () {
+function gounwork () {
   export PATH=$OLDPATH
   unset GOPATH
-  unset OLDPATH	
+  unset OLDPATH
 }
