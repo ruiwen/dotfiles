@@ -31,3 +31,36 @@ function stopwatch(){
     sleep 0.1
    done
 }
+
+
+# notify slack
+function notify () {
+
+  SLACK_URL="https://hooks.slack.com/services/INTERGRATION/KEY/HERE"
+  RECIPIENT=${2:-@ruiwen}
+
+  START=$(date -u)
+  START_TIME=$(date +%s)
+
+  OUTPUT="$($1)"
+
+  DURATION=$((`date +%s` - $START_TIME))
+
+  TEXT=$(cat <<TEXT
+  \`\`\`
+  DONE: ${1}\n
+  Output:\n
+  ${OUTPUT}\n\n
+  Started: ${START}\n
+  Duration: ${DURATION}s
+  \`\`\`
+TEXT
+)
+
+  BODY=$(cat <<BODY
+  {"text": "${TEXT}", "channel": "${RECIPIENT}"}
+BODY
+)
+
+  curl -X POST -d "${BODY}" -H "Content-Type: application/json" ${SLACK_URL}
+}
