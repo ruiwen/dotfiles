@@ -64,3 +64,16 @@ BODY
 
   curl -X POST -d "${BODY}" -H "Content-Type: application/json" ${SLACK_URL}
 }
+
+function findport() {
+  sudo lsof -i :${1}
+}
+
+function killport() {
+  findport ${1}
+  read -e -p "Kill these processes? [y/n]: " RESPONSE
+  if [ ${RESPONSE,,} == 'y' ]; then
+    sudo kill $(sudo lsof -t -i:${1})
+    echo "Killed."
+  fi
+}
