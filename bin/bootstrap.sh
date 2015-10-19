@@ -9,6 +9,10 @@ if [ ! `which tmux` ]; then
   sudo apt-get install -y tmux
 fi
 
+if [ ! `which vim` ]; then
+  sudo apt-get install -y vim
+fi
+
 if [ ! -d ~/dotfiles ]; then
     git clone https://github.com/ruiwen/dotfiles.git
 fi
