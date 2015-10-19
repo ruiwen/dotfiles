@@ -96,3 +96,15 @@ map  N <Plug>(easymotion-prev)
 " Remove trailing spaces
 :noremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
+" Resizing splits
+:map <C-J> <C-W>j
+:map <C-K> <C-W>k
+:map <C-H> <C-W>h
+:map <C-L> <C-W>l
+:noremap <silent> ˘  <C-W>+
+:noremap <silent> ¯  <C-W>-
+:noremap <silent> ≤  <C-W><
+:noremap <silent> ≥  <C-W>>
+:noremap <C-W>_  <C-W>s
+:noremap <C-W>\| <C-W>v
+
