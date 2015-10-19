@@ -45,6 +45,11 @@ Plugin 'SirVer/ultisnips'
 " vim-go 
 Plugin 'fatih/vim-go'
 
+" YouCompleteMe
+Plugin 'Valloric/YouCompleteMe'
+
+" Syntastic
+Plugin 'scrooloose/syntastic'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
