@@ -22,7 +22,9 @@ if [ -f ~/.bashrc ]; then
 fi
 
 for f in pythonrc tmux.conf bashrc bash_aliases dir_colors gitconfig profile vim vimrc; do
-    ln -s dotfiles/.${f} ~/.${f}
+    if [ ! -e ~/.${f} ]; then
+        ln -s dotfiles/.${f} ~/.${f}
+    fi
 done
 
 if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
