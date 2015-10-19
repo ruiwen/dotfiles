@@ -108,3 +108,12 @@ map  N <Plug>(easymotion-prev)
 :noremap <C-W>_  <C-W>s
 :noremap <C-W>\| <C-W>v
 
+" Move lines around
+" http://vim.wikia.com/wiki/Moving_lines_up_or_down
+" Mapping Alt in Mac - http://stackoverflow.com/a/5382863
+nnoremap <silent> ∆  :m .+1<CR>==
+nnoremap <silent> ˚ :m .-2<CR>==
+inoremap <silent> ∆ <Esc>:m .+1<CR>==gi
+inoremap <silent> ˚ <Esc>:m .-2<CR>==gi
+vnoremap <silent> ∆ :m '>+1<CR>gv=gv
+vnoremap <silent> ˚ :m '<-2<CR>gv=gv
