@@ -31,6 +31,19 @@ if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
     git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
 
+# Install build libraries for YouCompleteMe
+echo "Install build-essential, python-dev, cmake (if you haven't already)"
+sudo apt-get install -y build-essential python-dev cmake
+
+# Install vim plugins
+vim +PluginInstall +qall
+
+if [ -d ~/.vim/bundle/YouCompleteMe ]; then
+    pushd ~/.vim/bundle/YouCompleteMe
+    ./install.py --clang-completer --gocode-completer
+    popd
+fi
+
 . ~/.profile
 . ~/.bashrc
 touch ~/.python_history
