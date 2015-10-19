@@ -64,7 +64,7 @@ autocmd BufNewfile,BufRead *.coffee set filetype=coffee
 autocmd Filetype coffee setlocal ts=4 sw=4 expandtab
 
 " Commands
-command Bd bp\|bd \#
+command! Bd bp\|bd \#
 
 " Key bindings
 let g:ctrlp_map = '<c-p>'
