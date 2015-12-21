@@ -77,3 +77,48 @@ function killport() {
     echo "Killed."
   fi
 }
+
+
+# Install stuff
+
+function version_codename() {
+  echo $(lsb_release -c | cut -f 2)
+}
+
+function install_requirements() {
+  if [ ! $(which add-apt-repository) ];then
+    sudo apt-get install software-properties-common
+  fi
+}
+
+function install_go() {
+  install_requirements
+  sudo add-apt-repository ppa:ubuntu-lxc/lxd-stable &&
+  sudo apt-get update &&
+  sudo apt-get install -y golang
+}
+
+function install_postgres() {
+  install_requirements
+  VERSION=$(version_codename)
+  if [ ! -e /etc/apt/sources.list.d/pgdg.list ]; then
+    wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+    echo "deb http://apt.postgresql.org/pub/repos/apt/ ${VERSION}-pgdg main" | sudo tee -a  /etc/apt/sources.list.d/pgdg.list > /dev/null
+  fi
+  sudo apt-get update
+  sudo apt-get install postgresql-9.4
+}
+
+function install_docker() {
+  install_requirements
+  VERSION=$(version_codename)
+  if [ ! -e /etc/apt/sources.list.d/docker.list ]; then
+    sudo apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+    echo "deb https://apt.dockerproject.org/repo ubuntu-${VERSION} main" | sudo tee -a /etc/apt/sources.list.d/docker.list > /dev/null
+  fi
+  sudo apt-get update
+  sudo apt-get purge lxc-docker*
+  sudo apt-cache policy docker-engine
+  sudo apt-get install docker-engine
+}
+
