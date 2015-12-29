@@ -1,6 +1,17 @@
 #!/bin/bash
 
 cd ~
+
+# Set locale to UTF8
+sudo locale-gen en_US.UTF-8
+cat  <<DEF_LC | sudo tee  /etc/default/locale
+LANG="en_US.UTF-8"
+LANGUAGE="en_US.UTF-8"
+LC_ALL="en_US.UTF-8"
+MESSAGES="POSIX"
+DEF_LC
+
+
 if [ ! `which git` ]; then
   sudo apt-get install -y git
 fi
