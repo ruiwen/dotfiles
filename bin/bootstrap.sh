@@ -55,7 +55,7 @@ vim +PluginInstall +qall
 
 if [ -d ~/.vim/bundle/YouCompleteMe ]; then
     pushd ~/.vim/bundle/YouCompleteMe
-    ./install.py --clang-completer --gocode-completer
+    ./install.py --clang-completer
     popd
 fi
 
