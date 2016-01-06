@@ -1,6 +1,6 @@
  # alias gowork="export GOPATH=`pwd`;export OLDPATH=$PATH; export PATH=$PATH:$GOPATH/bin"
  # alias gounwork="export PATH=$OLDPATH;unset GOPATH;unset OLDPATH"
-
+alias timecurl="curl -w \"@${HOME}/dotfiles/curl/curlformat\" -o /dev/null -s "
 
 function gowork () {
   export GOPATH=`pwd`
