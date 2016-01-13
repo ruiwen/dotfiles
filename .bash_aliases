@@ -122,3 +122,18 @@ function install_docker() {
   sudo apt-get install docker-engine
 }
 
+function install_dokku() {
+  install_requirements
+  if [ ! $(which wget) ]; then
+    sudo apt-get install -y wget
+  fi
+
+  SRC=${HOME}/dotfiles/src/dokku
+  if [ ! -d ${SRC} ]; then
+    mkdir -p ${SRC}
+  fi
+  pushd ${SRC}
+  wget https://raw.githubusercontent.com/dokku/dokku/v0.4.7/bootstrap.sh
+  sudo DOKKU_TAG=v0.4.7 bash bootstrap.sh
+  popd
+}
