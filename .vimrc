@@ -75,6 +75,9 @@ command! Bd bp\|bd \#
 " Key bindings
 let g:ctrlp_map = '<c-p>'
 
+" Ctrl P ignore settings
+set wildignore+=*/venv/*,*.pyc,*/node_modules/*,*/bower_components/*
+
 " EasyMotion
 "map <Leader> <Plug>(easymotion-prefix)
 map <Leader> <Plug>(easymotion-s2)
