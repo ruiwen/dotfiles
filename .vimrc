@@ -126,3 +126,7 @@ inoremap <silent> ∆ <Esc>:m .+1<CR>==gi
 inoremap <silent> ˚ <Esc>:m .-2<CR>==gi
 vnoremap <silent> ∆ :m '>+1<CR>gv=gv
 vnoremap <silent> ˚ :m '<-2<CR>gv=gv
+
+" Reload vimrc
+command! Reload :so $MYVIMRC
+
