@@ -18,7 +18,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " CtrlP plugin - https://github.com/kien/ctrlp.vim
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 " CoffeeScript plugin - https://github.com/kchmck/vim-coffee-script
 Plugin 'kchmck/vim-coffee-script'
