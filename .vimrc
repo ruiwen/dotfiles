@@ -42,7 +42,7 @@ Plugin 'SirVer/ultisnips'
 " Snippets
 "Plugin 'honza/vim-snippets'
 
-" vim-go 
+" vim-go
 Plugin 'fatih/vim-go'
 
 " YouCompleteMe
