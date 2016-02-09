@@ -67,7 +67,7 @@ autocmd Filetype javascript setlocal ts=4 sw=4 expandtab
 autocmd Filetype nginx setlocal ts=2 sw=2 expandtab
 autocmd Filetype sh setlocal ts=2 sw=2 expandtab
 autocmd BufNewfile,BufRead *.coffee set filetype=coffee
-autocmd Filetype coffee setlocal ts=4 sw=4 expandtab
+autocmd Filetype coffee setlocal ts=2 sw=2 expandtab
 
 " Commands
 command! Bd bp\|bd \#
