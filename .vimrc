@@ -27,6 +27,9 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 
+" Vim Jade - https://github.com/digitaltoad/vim-jade
+Plugin 'digitaltoad/vim-jade'
+
 " Vimac
 " Plugin 'andrep/vimacs'
 
@@ -63,6 +66,7 @@ filetype plugin indent on
 autocmd Filetype html setlocal ts=2 sw=2 expandtab
 autocmd Filetype python setlocal ts=4 sw=4 expandtab
 autocmd Filetype jade setlocal ts=2 sw=2 expandtab
+autocmd BufNewfile,BufRead *.jade set filetype=jade
 autocmd Filetype javascript setlocal ts=4 sw=4 expandtab
 autocmd Filetype nginx setlocal ts=2 sw=2 expandtab
 autocmd Filetype sh setlocal ts=2 sw=2 expandtab
