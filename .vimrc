@@ -71,6 +71,7 @@ autocmd Filetype coffee setlocal ts=2 sw=2 expandtab
 
 " Commands
 command! Bd bp\|bd \#
+command! Reload :so $MYVIMRC
 
 " Key bindings
 let g:ctrlp_map = '<c-p>'
@@ -127,6 +128,4 @@ inoremap <silent> ˚ <Esc>:m .-2<CR>==gi
 vnoremap <silent> ∆ :m '>+1<CR>gv=gv
 vnoremap <silent> ˚ :m '<-2<CR>gv=gv
 
-" Reload vimrc
-command! Reload :so $MYVIMRC
 
