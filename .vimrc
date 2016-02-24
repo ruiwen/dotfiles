@@ -54,6 +54,9 @@ Plugin 'Valloric/YouCompleteMe'
 " Syntastic
 Plugin 'scrooloose/syntastic'
 
+" Docker
+Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+
 " All of your Plugins must be added before the following line
 call vundle#end()
 
@@ -72,6 +75,7 @@ autocmd Filetype nginx setlocal ts=2 sw=2 expandtab
 autocmd Filetype sh setlocal ts=2 sw=2 expandtab
 autocmd BufNewfile,BufRead *.coffee set filetype=coffee
 autocmd Filetype coffee setlocal ts=2 sw=2 expandtab
+autocmd BufNewfile,BufRead Dockerfile set filetype=dockerfile
 
 " Commands
 command! Bd bp\|bd \#
