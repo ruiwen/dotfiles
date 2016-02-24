@@ -298,7 +298,8 @@ endfun
 " }}}
 
 if !exists("g:jellybeans_background_color")
-  let g:jellybeans_background_color = "151515"
+  " let g:jellybeans_background_color = "151515"
+  let g:jellybeans_background_color = "444143"
 end
 
 call s:X("Normal","e8e8d3",g:jellybeans_background_color,"","White","")
@@ -496,7 +497,8 @@ hi! link TagListFileName Directory
 call s:X("PreciseJumpTarget","B9ED67","405026","","White","Green")
 
 if !exists("g:jellybeans_background_color_256")
-  let g:jellybeans_background_color_256=233
+  " let g:jellybeans_background_color_256=233
+  let g:jellybeans_background_color_256=235
 end
 " Manual overrides for 256-color terminals. Dark colors auto-map badly.
 if !s:low_color
