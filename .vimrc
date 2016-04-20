@@ -5,7 +5,10 @@ set number
 set cursorline
 
 syntax on
+" set background=light
+set background=dark
 colorscheme jellybeans
+"colorscheme solarized
 
 " Vundle package management
 " set the runtime path to include Vundle and initialize
