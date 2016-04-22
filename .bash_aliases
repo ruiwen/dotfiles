@@ -134,6 +134,6 @@ function install_dokku() {
   fi
   pushd ${SRC}
   wget https://raw.githubusercontent.com/dokku/dokku/v0.4.7/bootstrap.sh
-  sudo DOKKU_TAG=v0.4.7 bash bootstrap.sh
+  sudo DOKKU_TAG=v0.5.5 bash bootstrap.sh
   popd
 }
