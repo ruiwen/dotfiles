@@ -11,6 +11,9 @@ LC_ALL="en_US.UTF-8"
 MESSAGES="POSIX"
 DEF_LC
 
+sudo dpkg-reconfigure locales
+
+sudo apt-get update
 
 if [ ! `which git` ]; then
   sudo apt-get install -y git
