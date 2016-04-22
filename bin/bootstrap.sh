@@ -29,7 +29,7 @@ if [ ! `which vim` ]; then
 fi
 
 if [ ! -d ~/dotfiles ]; then
-    git clone git@github.com:ruiwen/dotfiles.git ~/dotfiles
+    git clone -o github git@github.com:ruiwen/dotfiles.git ~/dotfiles
 fi
 
 if [ -f ~/.profile ]; then
