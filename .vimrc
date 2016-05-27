@@ -60,6 +60,9 @@ Plugin 'scrooloose/syntastic'
 " Docker
 Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
 
+" vim git-gutter
+Plugin 'airblade/vim-gitgutter'
+
 " All of your Plugins must be added before the following line
 call vundle#end()
 
