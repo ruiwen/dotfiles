@@ -82,6 +82,7 @@ autocmd Filetype sh setlocal ts=2 sw=2 expandtab
 autocmd BufNewfile,BufRead *.coffee set filetype=coffee
 autocmd Filetype coffee setlocal ts=2 sw=2 expandtab
 autocmd BufNewfile,BufRead Dockerfile set filetype=dockerfile
+autocmd BufNewfile,BufRead *.go set filetype=go
 
 " Commands
 command! Bd bp\|bd \#
