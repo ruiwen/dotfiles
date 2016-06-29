@@ -24,8 +24,8 @@ if [ ! `which tmux` ]; then
   sudo apt-get install -y tmux
 fi
 
-if [ ! `which vim` ]; then
-  sudo apt-get install -y vim
+if [ ! `vim --version > /dev/null 2>&1 | grep "+python"` ]; then
+  sudo apt-get install -y vim-nox
 fi
 
 if [ ! -d ~/dotfiles ]; then
