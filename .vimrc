@@ -18,61 +18,59 @@ set background=dark
 colorscheme jellybeans
 "colorscheme solarized
 
-" Vundle package management
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+" Vim Plug Begin
+call plug#begin("~/.vim/bundle")
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+Plug 'gmarik/Vundle.vim'
 
 " CtrlP plugin - https://github.com/kien/ctrlp.vim
-Plugin 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 
 " CoffeeScript plugin - https://github.com/kchmck/vim-coffee-script
-Plugin 'kchmck/vim-coffee-script'
+Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 
 " Markdown - https://github.com/plasticboy/vim-markdown
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown', { 'for': 'md' }
 
 " Vim Jade - https://github.com/digitaltoad/vim-jade
-Plugin 'digitaltoad/vim-jade'
+Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
 
 " Vimac
-" Plugin 'andrep/vimacs'
+" Plug 'andrep/vimacs'
 
 " vim-emacs-bindings
-Plugin 'maxbrunsfeld/vim-emacs-bindings'
+Plug 'maxbrunsfeld/vim-emacs-bindings'
 
 " Vim EasyMotion - http://vimawesome.com/plugin/easymotion
-Plugin 'Lokaltog/vim-easymotion'
+Plug 'Lokaltog/vim-easymotion'
 
 " Ultisnips - https://github.com/sirver/ultisnips
-Plugin 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 
 " Snippets
-"Plugin 'honza/vim-snippets'
+"Plug 'honza/vim-snippets'
 
 " vim-go
-Plugin 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'for': 'go' }
 
 " YouCompleteMe
-Plugin 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
 
 " Syntastic
-Plugin 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 
 " Docker
-Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+Plug 'docker/docker' , { 'for': 'Dockerfile' }
 
 " vim git-gutter
-Plugin 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
+
 
 " All of your Plugins must be added before the following line
-call vundle#end()
+" call vundle#end()
+call plug#end()
 
 syntax enable
 filetype plugin indent on
