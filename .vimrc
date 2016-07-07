@@ -1,8 +1,10 @@
 
 set showcmd
-set smartindent
-set number
+set smartindent " Use smartindent
+set number      " Show line numbers
 set cursorline
+set hidden      " Allow buffer switching on dirty buffers
+
 
 syntax on
 " set background=light
