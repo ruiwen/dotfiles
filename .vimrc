@@ -67,6 +67,11 @@ Plug 'docker/docker' , { 'for': 'Dockerfile' }
 " vim git-gutter
 Plug 'airblade/vim-gitgutter'
 
+" deoplete
+function! UpdateRemote(arg)
+  UpdateRemotePlugins
+endfunction
+Plug 'Shougo/deoplete.nvim', { 'do': function('UpdateRemote') }
 
 " All of your Plugins must be added before the following line
 " call vundle#end()
@@ -94,6 +99,17 @@ autocmd Filetype yaml setlocal ts=2 sw=2 expandtab
 " Commands
 command! Bd bp\|bd \#
 command! Reload :so $MYVIMRC
+
+" Neovim / Deoplete
+if has('nvim') != 0
+  let g:deoplete#enable_at_startup = 1
+
+  "deoplete tab-complete
+  " Ref: https://gregjs.com/vim/2016/configuring-the-deoplete-asynchronous-keyword-completion-plugin-with-tern-for-vim/
+  inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
+  autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+endif
 
 " Key bindings
 let g:ctrlp_map = '<c-p>'
