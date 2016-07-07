@@ -140,3 +140,12 @@ function install_dokku() {
   sudo DOKKU_TAG=v0.5.5 bash bootstrap.sh
   popd
 }
+
+
+function docker_clear_containers() {
+  for i in $(sudo docker ps -f status=Exited -aq); do sudo docker rm ${i}; done
+}
+
+function docker_clear_images() {
+  for i in $(sudo docker images | grep none | tr -s  ' ' | cut -d ' '  -f 3); do sudo docker rmi ${i}; done
+}
