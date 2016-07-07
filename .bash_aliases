@@ -120,6 +120,9 @@ function install_docker() {
   sudo apt-get purge lxc-docker*
   sudo apt-cache policy docker-engine
   sudo apt-get install docker-engine
+
+  # Install docker bash-completion
+  wget https://raw.githubusercontent.com/docker/docker/master/contrib/completion/bash/docker -O ~/.docker-completion.sh
 }
 
 function install_dokku() {
