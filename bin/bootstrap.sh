@@ -62,7 +62,6 @@ done
 # Set up symlinks for neovim
 if [ `which nvim` ]; then
   NVIM=${HOME}/.config/nvim
-  mkdir -p ${NVIM}
   if [ ! -h ${NVIM} ]; then
     ln -s ~/.vim ${NVIM}
   fi
