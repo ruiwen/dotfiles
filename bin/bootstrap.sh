@@ -16,14 +16,19 @@ DEF_LC
   sudo dpkg-reconfigure locales
 fi
 
-sudo apt-get update
+declare -a APPS
 
 if [ ! `which git` ]; then
-  sudo apt-get install -y git
+  APPS+=(git)
 fi
 
 if [ ! `which tmux` ]; then
-  sudo apt-get install -y tmux
+  APPS+=(tmux)
+fi
+
+if [ ! -z ${APPS} ]; then
+  sudo apt-get update && \
+  sudo apt-get install -y ${APPS[@]}
 fi
 
 if [ ! `vim --version > /dev/null 2>&1 | grep "+python"` ]; then
