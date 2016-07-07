@@ -76,22 +76,18 @@ if [ `which nvim` ]; then
   for i in undo backup swp; do
     mkdir -p ${NVIM}/.${i}
   done
-if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
-    git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
 
-# Install build libraries for YouCompleteMe
-echo "Install build-essential, python-dev, cmake (if you haven't already)"
-sudo apt-get install -y build-essential python-dev cmake
+if [ ! -f ~/.vim/autoload/plug.vim ]; then
+  curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
 
 # Install vim plugins
-vim +PluginInstall +qall
+vim +PlugInstall +qall
 
-if [ -d ~/.vim/bundle/YouCompleteMe ]; then
-    pushd ~/.vim/bundle/YouCompleteMe
-    ./install.py --clang-completer
-    popd
-fi
+# Install build libraries
+echo "Install build-essential, python-dev, cmake (if you haven't already)"
+sudo apt-get install -y build-essential python-dev cmake
 
 . ~/.profile
 . ~/.bashrc
