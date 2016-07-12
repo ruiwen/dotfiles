@@ -173,4 +173,7 @@ inoremap <silent> ˚ <Esc>:m .-2<CR>==gi
 vnoremap <silent> ∆ :m '>+1<CR>gv=gv
 vnoremap <silent> ˚ :m '<-2<CR>gv=gv
 
+" Use Esc to clear search highlighting
+" Ref: http://stackoverflow.com/questions/657447/vim-clear-last-search-highlighting#comment3805589_657447
+nnoremap <silent> <Esc> :nohlsearch<CR> :let @/=""<CR>
 
