@@ -99,6 +99,7 @@ autocmd Filetype yaml setlocal ts=2 sw=2 expandtab
 " Commands
 command! Bd bp\|bd \#
 command! R :so $MYVIMRC
+command! E :set paste!
 
 " Neovim / Deoplete
 if has('nvim') != 0
