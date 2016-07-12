@@ -15,8 +15,8 @@ set directory=~/.vim/.swp//
 syntax on
 " set background=light
 set background=dark
-colorscheme jellybeans
-"colorscheme solarized
+colorscheme mod8
+
 
 " Vim Plug Begin
 call plug#begin("~/.vim/bundle")
