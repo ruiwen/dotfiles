@@ -6,6 +6,7 @@ function gowork () {
   export GOPATH=`pwd`
   export OLDPATH=$PATH
   export PATH=$PATH:$GOPATH/bin
+  echo -e "GOPATH set to: ${GOPATH}\nPATH set to: ${PATH}"
 }
 
 function gounwork () {
