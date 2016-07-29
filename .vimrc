@@ -62,7 +62,7 @@ Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'scrooloose/syntastic'
 
 " Docker
-Plug 'docker/docker' , { 'for': 'Dockerfile' }
+Plug 'docker/docker' , { 'rtp': '/contrib/syntax/vim/' }
 
 " vim git-gutter
 Plug 'airblade/vim-gitgutter'
@@ -92,7 +92,6 @@ autocmd Filetype nginx setlocal ts=2 sw=2 expandtab
 autocmd Filetype sh setlocal ts=2 sw=2 expandtab
 autocmd BufNewfile,BufRead *.coffee set filetype=coffee
 autocmd Filetype coffee setlocal ts=2 sw=2 expandtab
-autocmd BufNewfile,BufRead Dockerfile set filetype=dockerfile
 autocmd BufNewfile,BufRead *.go set filetype=go
 autocmd Filetype yaml setlocal ts=2 sw=2 expandtab
 autocmd Filetype fluentd setlocal ts=2 sw=2 expandtab
