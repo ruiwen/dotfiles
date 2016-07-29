@@ -1,0 +1,7 @@
+
+# Vim
+.vim/bundle
+.vim/autoload
+.vim/.swp
+.vim/.netrwhist
+.vim/init.vim
