@@ -17,8 +17,11 @@ syntax include @Html syntax/html.vim
 
 syn match fluentdBlock +<.*>+
 syn match fluentdComment +#.*+
-syn match fluentdMatch + [a-z.*]*+ contained
-syn region fluentdMatchBlocks start=+<match+ end=+>+ contains=fluentdMatch oneline
+syn match fluentdPattern + [a-z.,{}*]*+ contained
+syn region fluentdMatchBlocks start=+<match+ end=+>+ contains=fluentdPattern oneline
+syn region fluentdFilterBlocks start=+<filter+ end=+>+ contains=fluentdPattern oneline
+syn match fluentDatetime +%[YmMdDHhMms]*+
+syn match fluentVar +[^ ]*{.*}[^ ]*+
 
 syn keyword pluginDirective source store server
 syn keyword includeDirective include
@@ -53,9 +56,12 @@ hi link bufferPluginCommand Identifier
 
 hi link fluentdBlock Function
 hi link fluentdMatchBlocks Function
+hi link fluentdFilterBlocks Function
 hi link fluentdComment Comment
-hi link fluentdMatch Constant
+hi link fluentdPattern Constant
 hi link fluentSpecial PreProc
+hi link fluentVar String
+hi link fluentDatetime Label
 
 let b:current_syntax="fluentd"
 
