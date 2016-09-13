@@ -10,8 +10,8 @@ syn match pythonKwargs			"\v\w+\="	contained
 syn match pythonKwargsAssignment	"\v\<\=\>,"	contained
 syn region pythonFunctionCall start="\v\w+\(" end="\v\)" contains=pythonKwargs,pythonKwargsAssignment,pythonString,pythonConstant,pythonComment,pythonList,pythonDict,pythonConstant fold transparent
 
-hi link pythonConstant   Constant
-hi link pythonList       Identifier
-hi link pythonDict       Label
-hi link pythonKwargs     Function
+hi link pythonConstant   	Constant
+hi link pythonList       	Identifier
+hi link pythonDict       	Label
+hi link pythonKwargs     	Function
 hi link pythonKwargsAssignment  String
