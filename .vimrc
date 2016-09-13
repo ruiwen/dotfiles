@@ -68,10 +68,10 @@ Plug 'docker/docker' , { 'rtp': '/contrib/syntax/vim/' }
 Plug 'airblade/vim-gitgutter'
 
 " deoplete
-function! UpdateRemote(arg)
-  UpdateRemotePlugins
-endfunction
-Plug 'Shougo/deoplete.nvim', { 'do': function('UpdateRemote') }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+" deoplete jedi
+Plug 'zchee/deoplete-jedi'
 
 " All of your Plugins must be added before the following line
 " call vundle#end()
@@ -104,6 +104,8 @@ command! E :set paste!
 " Neovim / Deoplete
 if has('nvim') != 0
   let g:deoplete#enable_at_startup = 1
+
+  let g:python3_host_prog = '/usr/bin/python3'
 
   "deoplete tab-complete
   " Ref: https://gregjs.com/vim/2016/configuring-the-deoplete-asynchronous-keyword-completion-plugin-with-tern-for-vim/
