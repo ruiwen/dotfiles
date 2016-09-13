@@ -2,12 +2,13 @@
 " Custom Python Syntax File
 "
 
-syn match pythonConstant   +\<[A-Z0-9_-]*\>+
-syn match pythonList       +\[\|\]+
-syn match pythonDict       +{\|}+
-syn match pythonKwargs     +\v\w*\=+        contained
-syn match pythonKwargsAssignment +\v\<\=\>+     contained
-syn region pythonFunctionCall start=+\v\w*\s?\(+ end=+\v\)+ contains=pythonKwargs,pythonKwargsAssignment,pythonString,pythonConstant
+syn keyword pythonStatement 		False None True
+syn match pythonConstant		"\<[A-Z0-9_-]*\>"
+syn match pythonList			"\[\|\]"
+syn match pythonDict			"{\|}"
+syn match pythonKwargs			"\v\w+\="	contained
+syn match pythonKwargsAssignment	"\v\<\=\>,"	contained
+syn region pythonFunctionCall start="\v\w+\(" end="\v\)" contains=pythonKwargs,pythonKwargsAssignment,pythonString,pythonConstant,pythonComment,pythonList,pythonDict,pythonConstant fold transparent
 
 hi link pythonConstant   Constant
 hi link pythonList       Identifier
