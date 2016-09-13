@@ -119,8 +119,8 @@ let g:ctrlp_map = '<c-p>'
 
 " YouCompleteMe config
 " https://github.com/Valloric/YouCompleteMe#options
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
+" let g:ycm_autoclose_preview_window_after_completion = 1
+" let g:ycm_autoclose_preview_window_after_insertion = 1
 
 
 " Ctrl P ignore settings
