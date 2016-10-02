@@ -34,7 +34,7 @@ fi
 if [ ! `which nvim` ]; then
   sudo add-apt-repository ppa:neovim-ppa/unstable
   sudo apt-get update
-  sudo apt-get install neovim jedi python-dev python-pip python3-dev python3-pip
+  sudo apt-get install neovim python3-jedi python-dev python-pip python3-dev python3-pip
   sudo pip3 install neovim
   sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
   sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
