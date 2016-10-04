@@ -98,9 +98,10 @@ autocmd Filetype coffee setlocal ts=2 sw=2 expandtab
 autocmd BufNewfile,BufRead *.go set filetype=go
 autocmd Filetype yaml setlocal ts=2 sw=2 expandtab
 autocmd Filetype fluentd setlocal ts=2 sw=2 expandtab
+autocmd! BufWritePost * Neomake
 
 " Commands
-command! Bd bp\|bd \#
+command! Bd bp\|bd #
 command! R :so $MYVIMRC
 command! E :set paste!
 
