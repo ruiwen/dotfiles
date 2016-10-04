@@ -109,6 +109,7 @@ command! E :set paste!
 if has('nvim') != 0
   let g:deoplete#enable_at_startup = 1
 
+  " Python 3 support
   let g:python3_host_prog = '/usr/bin/python3'
 
   "deoplete tab-complete
