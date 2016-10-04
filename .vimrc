@@ -59,7 +59,10 @@ Plug 'fatih/vim-go', { 'for': 'go' }
 " Plug 'Valloric/YouCompleteMe'
 
 " Syntastic
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
+
+" Neomake
+Plug 'neomake/neomake'
 
 " Docker
 Plug 'docker/docker' , { 'rtp': '/contrib/syntax/vim/' }
