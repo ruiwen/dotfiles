@@ -150,3 +150,15 @@ function docker_cleanup() {
 function docker_cleanup_images() {
   for i in $(sudo docker images | grep none | tr -s  ' ' | cut -d ' '  -f 3); do sudo docker rmi ${i}; done
 }
+
+# Converts a redis command into redis protocol
+# eg. "$ redis_p HMSET coll key value"
+# Ref: https://redis.io/topics/mass-insert
+function redis_p() {
+  declare ARR=(${@:-$(</dev/stdin)})
+  OUTPUT="*${#ARR[@]}\r\n"
+  for a in "${ARR[@]}"; do
+    OUTPUT="${OUTPUT}\$$(echo -n ${a} | wc -c)\r\n${a}\r\n"
+  done
+  echo -ne $"${OUTPUT}"
+}
