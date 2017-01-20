@@ -76,6 +76,9 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " deoplete jedi
 Plug 'zchee/deoplete-jedi'
 
+" deoplete go
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+
 " All of your Plugins must be added before the following line
 " call vundle#end()
 call plug#end()
@@ -115,6 +118,11 @@ if has('nvim') != 0
   "deoplete tab-complete
   " Ref: https://gregjs.com/vim/2016/configuring-the-deoplete-asynchronous-keyword-completion-plugin-with-tern-for-vim/
   inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
+  " Deoplete Go settings
+  " https://github.com/zchee/deoplete-go#available-settings
+  let g:deoplete#sources#go#gocode_binary = '/home/ruiwen/projects/golang/bin/gocode'
+
 
   autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 endif
