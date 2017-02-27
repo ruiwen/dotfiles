@@ -72,6 +72,18 @@ Plug 'zchee/deoplete-jedi'
 " deoplete go
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 
+" vim-airline
+Plug 'vim-airline/vim-airline'
+
+" vim-airline-themes
+" Plug 'vim-airline/vim-airline-themes'
+
+" vim indent guides
+Plug 'nathanaelkane/vim-indent-guides'
+
+" fugitive - git plugin
+Plug 'tpope/vim-fugitive'
+
 " All of your Plugins must be added before the following line
 " call vundle#end()
 call plug#end()
@@ -119,6 +131,17 @@ if has('nvim') != 0
 
   autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 endif
+
+" Set vim-airline theme
+let g:airline_extensions = ['hunks', 'branch']
+" let g:airline_powerline_fonts = 1
+
+" Set up indent-guides
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+let g:indent_guides_auto_colors = 0
+hi IndentGuidesOdd  guibg=grey   ctermbg=0
+hi IndentGuidesEven guibg=grey ctermbg=0
 
 " Key bindings
 let g:ctrlp_map = '<c-p>'
