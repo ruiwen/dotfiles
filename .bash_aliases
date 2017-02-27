@@ -142,6 +142,14 @@ function install_dokku() {
   popd
 }
 
+function install_heroku() {
+  install_requirements
+  sudo add-apt-repository "deb https://cli-assets.heroku.com/branches/stable/apt ./"
+  curl -L https://cli-assets.heroku.com/apt/release.key | sudo apt-key add -
+  sudo apt-get update
+  sudo apt-get install heroku
+}
+
 
 function docker_cleanup() {
   for i in $(sudo docker ps -f status=exited -aq); do sudo docker rm ${i}; done
