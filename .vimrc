@@ -127,7 +127,7 @@ if has('nvim') != 0
 
   " Deoplete Go settings
   " https://github.com/zchee/deoplete-go#available-settings
-  let g:deoplete#sources#go#gocode_binary = '/home/ruiwen/projects/golang/bin/gocode'
+  let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
 
 
   autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
