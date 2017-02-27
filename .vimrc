@@ -24,7 +24,7 @@ set mouse=a
 call plug#begin("~/.vim/bundle")
 
 " let Vundle manage Vundle, required
-Plug 'gmarik/Vundle.vim'
+" Plug 'gmarik/Vundle.vim'
 
 " CtrlP plugin - https://github.com/kien/ctrlp.vim
 Plug 'ctrlpvim/ctrlp.vim'
@@ -38,9 +38,6 @@ Plug 'plasticboy/vim-markdown', { 'for': 'md' }
 
 " Vim Jade - https://github.com/digitaltoad/vim-jade
 Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
-
-" Vimac
-" Plug 'andrep/vimacs'
 
 " vim-emacs-bindings
 Plug 'maxbrunsfeld/vim-emacs-bindings'
@@ -56,12 +53,6 @@ Plug 'Lokaltog/vim-easymotion'
 
 " vim-go
 Plug 'fatih/vim-go', { 'for': 'go' }
-
-" YouCompleteMe
-" Plug 'Valloric/YouCompleteMe'
-
-" Syntastic
-" Plug 'scrooloose/syntastic'
 
 " Neomake
 Plug 'neomake/neomake'
