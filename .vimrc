@@ -17,6 +17,8 @@ syntax on
 set background=dark
 colorscheme mod8
 
+set mouse=a
+
 
 " Vim Plug Begin
 call plug#begin("~/.vim/bundle")
