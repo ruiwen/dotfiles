@@ -19,6 +19,15 @@ colorscheme mod8
 
 set mouse=a
 
+set foldenable  " Enable folding
+set foldmethod=indent
+set foldlevelstart=1
+set foldnestmax=2
+nnoremap <space> za  " space toggles opening/closing of the fold
+
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
 
 " Vim Plug Begin
 call plug#begin("~/.vim/bundle")
