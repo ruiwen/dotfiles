@@ -4,13 +4,13 @@ set smartindent " Use smartindent
 set number      " Show line numbers
 set cursorline
 set hidden      " Allow buffer switching on dirty buffers
+set lazyredraw
 
 " Undo/backup/swap dirs
 " Ref: https://coderwall.com/p/sdhfug/vim-swap-backup-and-undo-files
 set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
-
 
 syntax on
 " set background=light
