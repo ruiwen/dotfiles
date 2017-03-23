@@ -103,20 +103,27 @@ filetype plugin indent on
 " Filetype specific settings
 " Simplified setup before we jump into using ftplugin
 :filetype on
-autocmd Filetype html setlocal ts=2 sw=2 expandtab
-autocmd Filetype python setlocal ts=4 sw=4 expandtab
-autocmd Filetype jade setlocal ts=2 sw=2 expandtab
-autocmd BufNewfile,BufRead *.jade set filetype=pug
-autocmd Filetype javascript setlocal ts=4 sw=4 expandtab
-autocmd Filetype nginx setlocal ts=2 sw=2 expandtab
-autocmd Filetype sh setlocal ts=2 sw=2 expandtab
-autocmd BufNewfile,BufRead *.coffee set filetype=coffee
-autocmd Filetype coffee setlocal ts=2 sw=2 expandtab
-autocmd BufNewfile,BufRead *.go set filetype=go
-autocmd Filetype yaml setlocal ts=2 sw=2 expandtab
-autocmd Filetype fluentd setlocal ts=2 sw=2 expandtab
-autocmd Filetype dockerfile setlocal ts=2 sw=2 expandtab
-autocmd! BufWritePost * Neomake
+
+augroup filetypes
+  autocmd!
+  autocmd BufWritePre * %s/\s\+$//e
+  autocmd Filetype html setlocal ts=2 sw=2 expandtab
+  autocmd Filetype python setlocal ts=4 sw=4 expandtab
+  autocmd Filetype jade setlocal ts=2 sw=2 expandtab
+  autocmd BufNewfile,BufRead *.jade set filetype=pug
+  autocmd Filetype javascript setlocal ts=4 sw=4 expandtab
+  autocmd Filetype javascript setlocal foldmethod=syntax
+  autocmd Filetype nginx setlocal ts=2 sw=2 expandtab
+  autocmd Filetype sh setlocal ts=2 sw=2 expandtab
+  autocmd BufNewfile,BufRead *.coffee set filetype=coffee
+  autocmd Filetype coffee setlocal ts=2 sw=2 expandtab
+  autocmd BufNewfile,BufRead *.go set filetype=go
+  autocmd Filetype yaml setlocal ts=2 sw=2 expandtab
+  autocmd Filetype fluentd setlocal ts=2 sw=2 expandtab
+  autocmd Filetype dockerfile setlocal ts=2 sw=2 expandtab
+  autocmd Filetype vim setlocal ts=2 sw=2 expandtab
+  autocmd! BufWritePost * Neomake
+augroup END
 
 " Commands
 command! Bd bp\|bd #
@@ -138,8 +145,10 @@ if has('nvim') != 0
   " https://github.com/zchee/deoplete-go#available-settings
   let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
 
-
-  autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+  augroup nvim
+    autocmd!
+    autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+  augroup END
 endif
 
 " Set vim-airline theme
