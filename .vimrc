@@ -25,6 +25,12 @@ set foldlevelstart=1
 set foldnestmax=2
 nnoremap <space> za  " space toggles opening/closing of the fold
 
+" Allow manual folding while editing even though auto folding is on
+augroup vimrc
+  au BufReadPre * setlocal foldmethod=indent
+  au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+augroup END
+
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk
