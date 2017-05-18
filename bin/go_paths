@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+function set_goroot() {
+  # Takes one parameter and exports it as the GOROOT
+  export GOROOT=$1
+
+  # Ref: http://stackoverflow.com/a/229606
+  # Test if $PATH doesn't already contain the given parameter
+  if [[ "$PATH" != *"${GOROOT}/bin"* ]]; then
+    export PATH=${PATH}:${GOROOT}/bin
+  fi
+}
+
+# Appends given param to $GOPATH
+function add_gopath() {
+
+  export GOPATH=$1
+
+  # Ref: http://stackoverflow.com/a/229606
+  # Test if $PATH doesn't already contain the given parameter
+  if [[ "$PATH" != *"${GOPATH}/bin"* ]]; then
+    export PATH=${PATH}:${GOPATH}/bin
+  fi
+}
+

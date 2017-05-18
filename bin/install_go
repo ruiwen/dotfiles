@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+# set -eo pipefail; [[ $TRACE ]] && set -x
+
+DOTFILES=${DOTFILES:-${HOME}/dotfiles}
+
+GOLANG_DOWNLOADS=https://golang.org/dl/
+GO_TARBALL_URL=$(curl -s ${GOLANG_DOWNLOADS} | grep -oP "https://storage.googleapis.com/golang/go\d+.\d+.\d+.linux-amd64.tar.gz" | head -1)
+GO_VERSION=$(echo ${GO_TARBALL_URL} | grep -oP "\d+.\d+.\d+")
+
+GOPATH=${HOME}/projects/golang
+GOINSTALL=${GOPATH}/.installation
+GOROOT=${GOINSTALL}/go
+GO_DOWNLOAD_PATH=${GOINSTALL}/download
+
+if [ ! -d ${GOPATH} ]; then
+  echo "Creating GOPATH: ${GOPATH}"
+  mkdir -p ${GOPATH}
+fi
+
+if [ ! -d ${GOINSTALL} ]; then
+  echo "Creating GOINSTALL: ${GOINSTALL}"
+  mkdir -p ${GOINSTALL}
+fi
+
+if [ ! -d ${GO_DOWNLOAD_PATH} ]; then
+  echo "Creating GO_DOWNLOAD_PATH: ${GO_DOWNLOAD_PATH}"
+  mkdir -p ${GO_DOWNLOAD_PATH}
+fi
+
+
+if [ ! -f ${GOROOT}/bin/go ]; then
+  echo "Downloading and installing Go ${GO_VERSION}: ${GO_TARBALL_URL}"
+  DOWNLOAD=$(curl -s ${GO_TARBALL_URL} -o ${GO_DOWNLOAD_PATH}/golang.tar.gz &&
+    pushd ${GO_DOWNLOAD_PATH} &&
+    tar -C ${GOINSTALL} -xvf golang.tar.gz)
+  DOWNLOAD_SUCCESS=$?
+else
+  DOWNLOAD_SUCCESS=0
+fi
+
+if [ ${DOWNLOAD_SUCCESS} ]; then
+
+  echo "Creating GOPATH directories: bin, pkg, src"
+  mkdir -p ${GOPATH}/{bin,pkg,src}
+
+  echo "Setting up .bashrc.d hooks"
+  BASHRCD=${HOME}/.bashrc.d
+  mkdir -p ${BASHRCD}
+
+  BASHRC_GO=${BASHRCD}/go.sh
+  cat <<- EOF > ${BASHRC_GO}
+. ${DOTFILES}/bin/go_paths
+
+set_goroot ${GOROOT}
+add_gopath ${GOPATH}
+
+function uninstall_go() {
+
+  read -p "Uninstall go distribution in ${GOINSTALL} ? [y/N]: " ANS
+  ANS="\${ANS:-n}"
+
+  # Compare against a lowercase version of the input
+  # Ref: http://stackoverflow.com/a/2264537
+  if [ "\${ANS,,}" != "y" ]; then
+    echo "Aborting. Installation untouched"
+    return
+  fi
+
+  rm -r ${GOINSTALL}
+  export PATH=\$(echo \${PATH} | sed "s#:${GOPATH}[^:]*##g")
+  unset GOINSTALL
+  unset GOROOT
+  unset GOPATH  # We don't delete GOPATH as there may be projects in there
+
+  rm ${BASHRC_GO}
+  echo "Uninstalled go"
+}
+
+EOF
+  chmod a+x ${BASHRC_GO}
+  . ${BASHRC_GO}
+fi
+
+echo "Done"
+
