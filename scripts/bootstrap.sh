@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -eo pipefail; [[ $TRACE ]] && set -x
+# set -eo pipefail; [[ $TRACE ]] && set -x
 
 cd ~
 
