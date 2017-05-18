@@ -93,10 +93,10 @@ function install_requirements() {
 }
 
 function install_go() {
-  install_requirements
-  sudo add-apt-repository ppa:ubuntu-lxc/lxd-stable &&
-  sudo apt-get update &&
-  sudo apt-get install -y golang
+  # Source the script instead of running it, so that
+  # the script runs in the current shell instance, instead
+  # of a subshell
+  . ${DOTFILES}/bin/install_go
 }
 
 function install_postgres() {
