@@ -99,6 +99,21 @@ function install_go() {
   . ${DOTFILES}/bin/install_go
 }
 
+function install_kubectl() {
+  . ${DOTFILES}/bin/go_paths
+  mkdir -p ${HOME}/.bashrc.d
+  mkdir -p ${GOPATH}
+  add_gopath ${GOPATH}
+  make_go_dirs
+  echo "Downloading .."
+  curl -s -L https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl -o ${GOPATH}/bin/kubectl &&
+    chmod a+x ${GOPATH}/bin/kubectl &&
+    kubectl completion bash > ${HOME}/.bashrc.d/kubectl-completion.bash &&
+    . ${HOME}/.bashrc.d/kubectl-completion.bash
+  echo "Done"
+
+}
+
 function install_postgres() {
   install_requirements
   VERSION=$(version_codename)
