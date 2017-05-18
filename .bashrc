@@ -122,4 +122,9 @@ if [[ "$PATH" != *"${DOTFILES}"* ]]; then
   export PATH=${PATH}:${DOTFILES}/bin
 fi
 
+if [ -d ${HOME}/.bashrc.d ]; then
+  for file in $(ls ${HOME}/.bashrc.d); do
+    . ${HOME}/.bashrc.d/${file}
+  done
+fi
 
