@@ -41,8 +41,9 @@ if [ ! `which nvim` ]; then
   sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
 fi
 
-if [ ! -d ~/dotfiles ]; then
-    git clone -o github git@github.com:ruiwen/dotfiles.git ~/dotfiles
+DOTFILES=${HOME}/dotfiles
+if [ ! -d ${DOTFILES} ]; then
+    git clone -o github git@github.com:ruiwen/dotfiles.git ${DOTFILES}
 fi
 
 if [ -f ~/.profile ]; then
@@ -55,7 +56,7 @@ fi
 
 for f in pythonrc tmux.conf bashrc bash_aliases dir_colors gitconfig profile vim vimrc; do
     if [ ! -e ~/.${f} ]; then
-        ln -s dotfiles/.${f} ~/.${f}
+        ln -s ${DOTFILES}/.${f} ~/.${f}
     fi
 done
 
