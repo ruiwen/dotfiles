@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+GOPATH=${HOME}/projects/golang
+GOINSTALL=${GOPATH}/.installation
+GOROOT=${GOINSTALL}/go
+GO_DOWNLOAD_PATH=${GOINSTALL}/download
+
+function make_go_dirs() {
+  mkdir -p ${GOPATH}/{bin,pkg,src}
+}
+
 function set_goroot() {
   # Takes one parameter and exports it as the GOROOT
   export GOROOT=$1
