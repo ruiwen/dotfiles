@@ -166,7 +166,7 @@ function redis_p() {
   declare ARR=(${@:-$(</dev/stdin)})
   OUTPUT="*${#ARR[@]}\r\n"
   for a in "${ARR[@]}"; do
-    OUTPUT="${OUTPUT}\$$(echo -n ${a} | wc -c)\r\n${a}\r\n"
+    OUTPUT+="\$$(echo -n ${a} | wc -c)\r\n${a}\r\n"
   done
   echo -ne $"${OUTPUT}"
 }
