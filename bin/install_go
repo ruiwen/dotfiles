@@ -8,9 +8,8 @@ GO_TARBALL_URL=$(curl -s ${GOLANG_DOWNLOADS} | grep -oP "https://storage.googlea
 GO_VERSION=$(echo ${GO_TARBALL_URL} | grep -oP "\d+.\d+.\d+")
 
 GOPATH=${HOME}/projects/golang
-GOINSTALL=${GOPATH}/.installation
-GOROOT=${GOINSTALL}/go
-GO_DOWNLOAD_PATH=${GOINSTALL}/download
+GOROOT=/opt/go
+GOINSTALL=${GOROOT}/.download
 
 if [ ! -d ${GOPATH} ]; then
   echo "Creating GOPATH: ${GOPATH}"
@@ -19,20 +18,14 @@ fi
 
 if [ ! -d ${GOINSTALL} ]; then
   echo "Creating GOINSTALL: ${GOINSTALL}"
-  mkdir -p ${GOINSTALL}
+  sudo mkdir -p ${GOINSTALL}
 fi
-
-if [ ! -d ${GO_DOWNLOAD_PATH} ]; then
-  echo "Creating GO_DOWNLOAD_PATH: ${GO_DOWNLOAD_PATH}"
-  mkdir -p ${GO_DOWNLOAD_PATH}
-fi
-
 
 if [ ! -f ${GOROOT}/bin/go ]; then
   echo "Downloading and installing Go ${GO_VERSION}: ${GO_TARBALL_URL}"
-  DOWNLOAD=$(curl -s ${GO_TARBALL_URL} -o ${GO_DOWNLOAD_PATH}/golang.tar.gz &&
-    pushd ${GO_DOWNLOAD_PATH} &&
-    tar -C ${GOINSTALL} -xvf golang.tar.gz)
+  DOWNLOAD=$(sudo curl -s ${GO_TARBALL_URL} -o ${GOINSTALL}/golang.tar.gz &&
+    pushd ${GOINSTALL} &&
+    sudo tar -C ${GOROOT} --strip-components 1 -xvf golang.tar.gz)
   DOWNLOAD_SUCCESS=$?
 else
   DOWNLOAD_SUCCESS=0
@@ -56,7 +49,7 @@ add_gopath ${GOPATH}
 
 function uninstall_go() {
 
-  read -p "Uninstall go distribution in ${GOINSTALL} ? [y/N]: " ANS
+  read -p "Uninstall go distribution in ${GOROOT} ? [y/N]: " ANS
   ANS="\${ANS:-n}"
 
   # Compare against a lowercase version of the input
@@ -66,7 +59,7 @@ function uninstall_go() {
     return
   fi
 
-  rm -r ${GOINSTALL}
+  sudo rm -r ${GOROOT}
   export PATH=\$(echo \${PATH} | sed "s#:${GOPATH}[^:]*##g")
   unset GOINSTALL
   unset GOROOT
