@@ -19,22 +19,6 @@ colorscheme mod8
 
 set mouse=a
 
-set foldenable  " Enable folding
-set foldmethod=indent
-set foldlevelstart=1
-set foldnestmax=2
-nnoremap <space> za  " space toggles opening/closing of the fold
-
-" Allow manual folding while editing even though auto folding is on
-augroup vimrc
-  au BufReadPre * setlocal foldmethod=indent
-  au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
-augroup END
-
-" move vertically by visual line
-nnoremap j gj
-nnoremap k gk
-
 " Vim Plug Begin
 call plug#begin("~/.vim/bundle")
 
@@ -103,8 +87,18 @@ Plug 'tpope/vim-fugitive'
 " call vundle#end()
 call plug#end()
 
+"
+" Editing
+" =========================
+
 syntax enable
 filetype plugin indent on
+
+set foldenable  " Enable folding
+set foldmethod=indent
+set foldlevelstart=1
+set foldnestmax=2
+nnoremap <space> za  " space toggles opening/closing of the fold
 
 " Filetype specific settings
 " Simplified setup before we jump into using ftplugin
@@ -128,8 +122,18 @@ augroup filetypes
   autocmd Filetype fluentd setlocal ts=2 sw=2 expandtab
   autocmd Filetype dockerfile setlocal ts=2 sw=2 expandtab
   autocmd Filetype vim setlocal ts=2 sw=2 expandtab
-  autocmd! BufWritePost * Neomake
+  autocmd CursorHold,FocusLost,BufLeave * Neomake
 augroup END
+
+" Allow manual folding while editing even though auto folding is on
+" augroup vimrc
+"   au BufReadPre * setlocal foldmethod=indent
+"   au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+" augroup END
+
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
 
 " Commands
 command! Bd bp\|bd #
