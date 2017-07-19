@@ -1,0 +1,31 @@
+-- Customisations for psql
+-- Inspired by https://www.citusdata.com/blog/2017/07/16/customizing-my-postgres-shell-using-psqlrc/
+
+-- Display null values as 'NULL'
+\pset null '(null)'
+
+-- Automatically enable expanded mode as needed
+\x auto
+
+-- Always enable timing
+\timing on
+
+-- Separate history file per database
+\set HISTFILE ~/.psql_history/history- :DBNAME
+
+-- Ignore dupes in history
+\set HISTCONTROL ignoredups
+
+-- Autocomplete keywords in whichever case they started with
+\set COMP_KEYWORD_CASE preserve-upper
+
+-- Show slow queries alias
+-- \set show_slow_queries
+-- SELECT
+--   (total_time / 1000 / 60) as total_minutes,
+--   (total_time/calls) as average_time, query
+-- FROM pg_stat_statements
+-- ORDER BY 1 DESC
+-- LIMIT 100;
+
+

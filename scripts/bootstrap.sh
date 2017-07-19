@@ -58,7 +58,11 @@ if [ -f ~/.bashrc ]; then
     mv ~/.bashrc ~/.bashrc.bak
 fi
 
-for f in pythonrc tmux.conf bashrc bash_aliases dir_colors gitconfig profile vim vimrc; do
+if [ -d ~/.psql_history ]; then
+  mkdir ~/.psql_history
+fi
+
+for f in pythonrc tmux.conf bashrc bash_aliases dir_colors gitconfig profile vim vimrc psqlrc; do
     if [ ! -e ~/.${f} ]; then
         ln -s ${DOTFILES}/.${f} ~/.${f}
     fi
