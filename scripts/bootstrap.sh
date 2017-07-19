@@ -26,6 +26,10 @@ if [ ! `which tmux` ]; then
   APPS+=(tmux)
 fi
 
+# Install build libraries
+echo "Install build-essential, python-dev, cmake (if you haven't already)"
+APPS+=(build-essential python-dev cmake)
+
 if [ ! -z ${APPS} ]; then
   sudo apt-get update && \
   sudo apt-get install -y ${APPS[@]}
@@ -83,9 +87,6 @@ fi
 # Install vim plugins
 vim +PlugInstall +qall
 
-# Install build libraries
-echo "Install build-essential, python-dev, cmake (if you haven't already)"
-sudo apt-get install -y build-essential python-dev cmake
 
 . ~/.profile
 . ~/.bashrc
