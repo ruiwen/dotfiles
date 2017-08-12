@@ -109,6 +109,7 @@ augroup filetypes
   autocmd BufWritePre * %s/\s\+$//e
   autocmd Filetype html setlocal ts=2 sw=2 expandtab
   autocmd Filetype python setlocal ts=4 sw=4 expandtab
+  autocmd Filetype ruby setlocal ts=4 sw=4 expandtab
   autocmd Filetype jade setlocal ts=2 sw=2 expandtab
   autocmd BufNewfile,BufRead *.jade set filetype=pug
   autocmd Filetype javascript setlocal ts=4 sw=4 expandtab
