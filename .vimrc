@@ -123,6 +123,7 @@ augroup filetypes
   autocmd Filetype fluentd setlocal ts=2 sw=2 expandtab
   autocmd Filetype dockerfile setlocal ts=2 sw=2 expandtab
   autocmd Filetype vim setlocal ts=2 sw=2 expandtab
+  autocmd Filetype go setlocal ts=4 sw=4 sts=4 noexpandtab
   autocmd CursorHold,FocusLost,BufLeave * Neomake
 augroup END
 
