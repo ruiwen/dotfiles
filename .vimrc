@@ -5,6 +5,7 @@ set number      " Show line numbers
 set cursorline
 set hidden      " Allow buffer switching on dirty buffers
 set lazyredraw
+set nocompatible
 
 " Undo/backup/swap dirs
 " Ref: https://coderwall.com/p/sdhfug/vim-swap-backup-and-undo-files
