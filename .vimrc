@@ -105,6 +105,8 @@ nnoremap <space> za  " space toggles opening/closing of the fold
 " Simplified setup before we jump into using ftplugin
 :filetype on
 
+" Ref: https://stackoverflow.com/a/10410590
+let blacklist = ['go']
 augroup filetypes
   autocmd!
   autocmd BufWritePre * %s/\s\+$//e
@@ -125,7 +127,12 @@ augroup filetypes
   autocmd Filetype dockerfile setlocal ts=2 sw=2 expandtab
   autocmd Filetype vim setlocal ts=2 sw=2 expandtab
   autocmd Filetype go setlocal ts=4 sw=4 sts=4 noexpandtab
-  autocmd CursorHold,FocusLost,BufLeave * Neomake
+  autocmd CursorHold,FocusLost,BufLeave * if index(blacklist, &ft) < 0 | Neomake
+augroup END
+
+augroup golang
+  autocmd!
+  autocmd BufWritePost *.go Neomake
 augroup END
 
 " Allow manual folding while editing even though auto folding is on
@@ -133,6 +140,8 @@ augroup END
 "   au BufReadPre * setlocal foldmethod=indent
 "   au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
 " augroup END
+
+let g:go_gocode_autobuild = 0
 
 " move vertically by visual line
 nnoremap j gj
