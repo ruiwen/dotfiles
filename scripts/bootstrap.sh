@@ -58,8 +58,12 @@ if [ -f ~/.bashrc ]; then
     mv ~/.bashrc ~/.bashrc.bak
 fi
 
-if [ -d ~/.psql_history ]; then
+if [ ! -d ~/.psql_history ]; then
   mkdir ~/.psql_history
+fi
+
+if [ ! -f ~/.python_history ]; then
+  touch ~/.python_history
 fi
 
 for f in pythonrc tmux.conf bashrc bash_aliases dir_colors gitconfig profile vim vimrc psqlrc; do
