@@ -23,12 +23,20 @@ function set_goroot() {
 # Appends given param to $GOPATH
 function add_gopath() {
 
-  export GOPATH=$1
+  if [[ "$GOPATH" != *"${1}"* ]]; then
+    export GOPATH=${GOPATH}:${1}
+  fi
 
   # Ref: http://stackoverflow.com/a/229606
   # Test if $PATH doesn't already contain the given parameter
-  if [[ "$PATH" != *"${GOPATH}/bin"* ]]; then
-    export PATH=${PATH}:${GOPATH}/bin
+  if [[ "$PATH" != *"${1}/bin"* ]]; then
+    export PATH=${PATH}:${1}/bin
   fi
 }
 
+# Remove given path from $PATH and $GOPATH
+function remove_gopath() {
+
+  export GOPATH=$(echo $GOPATH | sed "s#:${1}[^:]*##g")
+  export PATH=$(echo $PATH | sed "s#:${1}[^:]*/bin##g")
+}
