@@ -111,6 +111,7 @@ augroup filetypes
   autocmd!
   autocmd BufWritePre * %s/\s\+$//e
   autocmd Filetype html setlocal ts=2 sw=2 expandtab
+  autocmd Filetype css setlocal ts=2 sw=2 expandtab
   autocmd Filetype python setlocal ts=4 sw=4 expandtab
   autocmd Filetype ruby setlocal ts=4 sw=4 expandtab
   autocmd Filetype jade setlocal ts=2 sw=2 expandtab
