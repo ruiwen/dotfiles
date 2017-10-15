@@ -83,7 +83,7 @@ function killport() {
 # Install stuff
 
 function version_codename() {
-  echo $(lsb_release -c | cut -f 2)
+  echo $(lsb_release -cs)
 }
 
 function install_requirements() {
