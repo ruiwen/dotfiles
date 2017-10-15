@@ -129,16 +129,22 @@ function install_docker() {
   install_requirements
   VERSION=$(version_codename)
   if [ ! -e /etc/apt/sources.list.d/docker.list ]; then
-    sudo apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-    echo "deb https://apt.dockerproject.org/repo ubuntu-${VERSION} main" | sudo tee -a /etc/apt/sources.list.d/docker.list > /dev/null
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - \
+    && sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu ${VERSION} stable"
   fi
-  sudo apt-get update
-  sudo apt-get purge lxc-docker*
-  sudo apt-cache policy docker-engine
-  sudo apt-get install docker-engine
+  sudo apt-get update && \
+  sudo apt-get install -y docker-ce
+  # if [ ! -e /etc/apt/sources.list.d/docker.list ]; then
+  #   sudo apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+  #   echo "deb https://apt.dockerproject.org/repo ubuntu-${VERSION} main" | sudo tee -a /etc/apt/sources.list.d/docker.list > /dev/null
+  # fi
+  # sudo apt-get update
+  # sudo apt-get purge lxc-docker*
+  # sudo apt-cache policy docker-engine
+  # sudo apt-get install docker-engine
 
   # Install docker bash-completion
-  wget https://raw.githubusercontent.com/docker/docker/master/contrib/completion/bash/docker -O ~/.docker-completion.sh
+  curl -L https://raw.githubusercontent.com/docker/docker-ce/master/components/cli/contrib/completion/bash/docker | sudo tee /etc/bash_completion.d/docker > /dev/null
 }
 
 function install_dokku() {
