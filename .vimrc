@@ -189,6 +189,9 @@ hi IndentGuidesEven guibg=grey ctermbg=0
 " Ctrl P
 " Key bindings
 let g:ctrlp_map = '<c-p>'
+let g:ctrlp_prompt_mappings = {
+  \ 'PrtClearCache()': ['<c-R>'],
+  \ }
 " Ctrl P ignore settings
 set wildignore+=*/venv*/*,*.pyc,*/node_modules/*,*/bower_components/*
 
