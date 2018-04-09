@@ -96,6 +96,7 @@ fi
 vim +PlugInstall +qall
 
 
-. ~/.profile
-. ~/.bashrc
-touch ~/.python_history
+
+. ${HOME}/.profile
+. ${HOME}/.bashrc
+touch ${HOME}/.python_history
