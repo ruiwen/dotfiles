@@ -174,6 +174,25 @@ if has('nvim') != 0
   augroup END
 endif
 
+""
+" UltiSnips
+""
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "snips"]
+" Ref: https://github.com/Valloric/YouCompleteMe/issues/420#issuecomment-55940039
+let g:UltiSnipsExpandTrigger = "<nop>"
+let g:ulti_expand_or_jump_res = 0
+function! ExpandSnippetOrCarriageReturn()
+    let snippet = UltiSnips#ExpandSnippetOrJump()
+    if g:ulti_expand_or_jump_res > 0
+        return snippet
+    else
+        return "\<CR>"
+    endif
+endfunction
+inoremap <expr> <CR> pumvisible() ? "<C-R>=ExpandSnippetOrCarriageReturn()<CR>" : "\<CR>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
 " Set vim-airline theme
 let g:airline_extensions = ['hunks', 'branch']
 " let g:airline_powerline_fonts = 1
