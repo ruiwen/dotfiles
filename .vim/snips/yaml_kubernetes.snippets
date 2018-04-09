@@ -1,0 +1,209 @@
+snippet deployment "Kubernetes Deployment" b
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name:  ${1:name}
+  labels:
+    ${2:labelkey}: ${3:labelvalue}
+spec:
+  replicas: ${4:replicas}
+  template:
+    metadata:
+      labels:
+        $2: $3
+      ${4:annotations:
+        ${5:annotationkey}: ${6:annotationvalue}
+        }
+    spec:
+      containers:
+      - name: $1
+        image: ${7:image}
+        imagePullPolicy: ${8:Always}
+        env:
+        - name: ${9:ENVNAME}
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+      # - name: NAME
+      #    valueFrom:
+      #      configMapKeyRef:
+      #        name: configmap.name
+      #        key: configmap.key
+        ports:
+        - containerPort: ${10:port}
+          name: ${11:portname}
+          protocol: ${12:TCP}
+        volumeMounts:
+        - name: $13
+          mountPath: ${15:/pod/path/data}
+      volumes:
+          - name: ${13:storagename}
+            hostPath:
+              path: ${14:/host/path}
+          - emptyDir:
+              medium: ""
+      ${16:nodeSelector:
+        nodetype: k8compute
+      }
+endsnippet
+
+snippet service "Kubernetes Service" b
+kind: Service
+apiVersion: v1
+metadata:
+  name: ${1:name}
+spec:
+  type: ${7:NodePort}
+  selector:
+     ${2:deploymentlabelkey}: ${3:deploymentlabelvalue}
+  ports:
+  - protocol: ${4:TCP}
+    port: ${5:outwardportnum}
+    targetPort: ${6:podportnum}
+    nodePort: ${8:nodeportnum}
+endsnippet
+
+snippet daemonset "Kubernetes Daemonset" b
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name:  ${1:name}
+  labels:
+    ${2:labelkey}: ${3:labelvalue}
+spec:
+  template:
+    metadata:
+      labels:
+        $2: $3
+      ${4:annotations:
+        ${5:annotationkey}: ${6:annotationvalue}
+        }
+    spec:
+      containers:
+      - name: $1
+        image: ${7:image}
+        imagePullPolicy: ${8:Always}
+        env:
+        - name: ${9:ENVNAME}
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+      # - name: NAME
+      #    valueFrom:
+      #      configMapKeyRef:
+      #        name: configmap.name
+      #        key: configmap.key
+        ports:
+        - containerPort: ${10:port}
+          name: ${11:portname}
+          protocol: ${12:TCP}
+        volumeMounts:
+        - name: $13
+          mountPath: ${15:/pod/path/data}
+      volumes:
+          - name: ${13:storagename}
+            hostPath:
+              path: ${14:/host/path}
+          - emptyDir:
+              medium: ""
+      ${16:nodeSelector:
+        nodetype: k8compute
+      }
+endsnippet
+
+snippet ingress "Kubernetes Ingress" b
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ${1:name}
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: ${2:hostname.com}
+    http:
+      paths:
+      - path: /foo
+        backend:
+          serviceName: ${3:servicename.svc.cluster.local}
+          servicePort: ${4:portnum}
+      - path: /bar
+        backend:
+          serviceName: s2
+          servicePort: 80
+endsnippet
+
+snippet namespace "Kubernetes Namespace"
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ${1:namespace}
+endsnippet
+
+snippet serviceaccount "Kubernetes ServiceAccount"
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ${1:serviceaccount}
+endsnippet
+
+snippet clusterrole "Kubernetes ClusterRole"
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: ${1:name}
+rules:
+- apiGroups: [""]
+  resources:
+  - nodes
+  - nodes/proxy
+  - services
+  - endpoints
+  - pods
+  - pods/proxy
+  verbs: ["get", "list", "watch"] # "create", "update", "patch", "delete"]
+- nonResourceURLs: ["/metrics"]
+  verbs: ["get"]
+endsnippet
+
+snippet clusterrolebinding "Kubernetes ClusterRoleBinding"
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: ${1:name}
+subjects:
+- kind: User
+  name: system:serviceaccount:${2:namespace}:$1
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: $1
+  apiGroup: rbac.authorization.k8s.io
+endsnippet
+
+snippet endpoint "Kubernetes Endpoints"
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: ${1:name}
+  labels:
+    ${2:label}: ${3:value}
+subsets:
+- addresses:
+  - ip: ${4:podip}
+    nodeName: ${5:nodename}
+  ports:
+  - name: ${6:portname}
+    port: ${7:portnumber}
+    protocol: ${8:TCP}
+endsnippet
+
+snippet secret "Kubernetes Secret"
+apiVersion: v1
+kind: Secret
+metadata:
+  name: ${1:name}
+type: Opaque
+data:
+  ${2:filename}: ${3:contents}
+endsnippet
