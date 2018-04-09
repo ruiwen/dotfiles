@@ -23,9 +23,6 @@ set mouse=a
 " Vim Plug Begin
 call plug#begin("~/.vim/bundle")
 
-" let Vundle manage Vundle, required
-" Plug 'gmarik/Vundle.vim'
-
 " CtrlP plugin - https://github.com/kien/ctrlp.vim
 Plug 'ctrlpvim/ctrlp.vim'
 
@@ -46,10 +43,7 @@ Plug 'maxbrunsfeld/vim-emacs-bindings'
 Plug 'Lokaltog/vim-easymotion'
 
 " Ultisnips - https://github.com/sirver/ultisnips
-" Plug 'SirVer/ultisnips'
-
-" Snippets
-"Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
 
 " vim-go
 Plug 'fatih/vim-go', { 'for': 'go' }
@@ -70,7 +64,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
 
 " deoplete go
-Plug 'zchee/deoplete-go', { 'do': 'make'}
+Plug 'zchee/deoplete-go', { 'do': 'make', 'for': 'go'}
 
 " vim-airline
 Plug 'vim-airline/vim-airline'
@@ -84,8 +78,13 @@ Plug 'nathanaelkane/vim-indent-guides'
 " fugitive - git plugin
 Plug 'tpope/vim-fugitive'
 
+" terminus - makes vim work better in a terminal/tmux
+Plug 'wincent/terminus'
+
+" vim-easy-align
+Plug 'junegunn/vim-easy-align'
+
 " All of your Plugins must be added before the following line
-" call vundle#end()
 call plug#end()
 
 "
