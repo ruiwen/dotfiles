@@ -236,7 +236,10 @@ omap / <Plug>(easymotion-tn)
 map  n <Plug>(easymotion-next)
 map  N <Plug>(easymotion-prev)
 
-" Rebound keys
+" Map easy-align
+"vmap \| <Plug>(EasyAlign)
+"xmap ga <Plug>(EasyAlign)
+
 
 " Remove trailing spaces
 :noremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
