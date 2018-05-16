@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-GOPATH=${HOME}/projects/golang
+export GOPATH=${HOME}/projects/golang
 GOINSTALL=${GOPATH}/.installation
 GOROOT=${GOINSTALL}/go
 GO_DOWNLOAD_PATH=${GOINSTALL}/download
