@@ -4,7 +4,7 @@
 DOTFILES=${DOTFILES:-${HOME}/dotfiles}
 
 GOLANG_DOWNLOADS=https://golang.org/dl/
-GO_TARBALL_URL=$(curl -s ${GOLANG_DOWNLOADS} | grep -oP "https://storage.googleapis.com/golang/go\d+.\d+.\d+.linux-amd64.tar.gz" | head -1)
+GO_TARBALL_URL=$(curl -s ${GOLANG_DOWNLOADS} | grep -oP "https://dl.google.com/go/go\d+.\d+.\d+.linux-amd64.tar.gz" | head -1)
 GO_VERSION=$(echo ${GO_TARBALL_URL} | grep -oP "\d+.\d+.\d+")
 
 GOPATH=${HOME}/projects/golang
