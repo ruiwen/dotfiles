@@ -95,6 +95,9 @@ fi
 # Install vim plugins
 vim +PlugInstall +qall
 
+# Install tmux plugin manager and bootstrap listed plugins
+git clone https://github.com/tmux-plugins/tpm ${HOME}/.tmux/plugins/tpm && \
+  ${HOME}/.tmux/plugins/tpm/scripts/install_plugins.sh
 
 
 . ${HOME}/.profile
