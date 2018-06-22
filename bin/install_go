@@ -21,14 +21,16 @@ if [ ! -d ${GOINSTALL} ]; then
   sudo mkdir -p ${GOINSTALL}
 fi
 
-if [ ! -f ${GOROOT}/bin/go ]; then
+if [ ! -f ${GOROOT}/bin/go -o "${1,,}" == "force" ]; then
   echo "Downloading and installing Go ${GO_VERSION}: ${GO_TARBALL_URL}"
   DOWNLOAD=$(sudo curl -s ${GO_TARBALL_URL} -o ${GOINSTALL}/golang.tar.gz &&
     pushd ${GOINSTALL} &&
     sudo tar -C ${GOROOT} --strip-components 1 -xvf golang.tar.gz)
   DOWNLOAD_SUCCESS=$?
 else
+  echo "${GOROOT}/bin/go exists, and 'force' not specified. Exiting."
   DOWNLOAD_SUCCESS=0
+  return 1
 fi
 
 if [ ${DOWNLOAD_SUCCESS} ]; then
