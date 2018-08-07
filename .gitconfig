@@ -10,6 +10,7 @@
 	br = branch
 	co = checkout
 	ap = add -p
+	au = add -u
 	df = diff
 	dc = diff --cached
 	mg = merge
