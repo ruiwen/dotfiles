@@ -36,12 +36,20 @@ spec:
         volumeMounts:
         - name: $13
           mountPath: ${15:/pod/path/data}
+	- name: some-configmap
+	  mountPath: /some/config/dir
       volumes:
           - name: ${13:storagename}
             hostPath:
               path: ${14:/host/path}
           - emptyDir:
               medium: ""
+	  - name: some-configmap
+	    configMap:
+              name: some-configmap
+	      items:
+	      - key: onekey
+	        path: filetomapto  # This ends up at /some/config/dir/filetomapto
       ${16:nodeSelector:
         nodetype: k8compute
       }
@@ -149,7 +157,7 @@ endsnippet
 
 snippet clusterrole "Kubernetes ClusterRole"
 kind: ClusterRole
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: ${1:name}
 rules:
@@ -168,7 +176,7 @@ endsnippet
 
 snippet clusterrolebinding "Kubernetes ClusterRoleBinding"
 kind: ClusterRoleBinding
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: ${1:name}
 subjects:
@@ -206,4 +214,164 @@ metadata:
 type: Opaque
 data:
   ${2:filename}: ${3:contents}
+endsnippet
+
+snippet networkpolicy "Kubernetes NetworkPolicy"
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ${1:name}
+spec:
+  podSelector:
+    matchLabels:
+      ${2:label}: ${3:value}
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - ipBlock:
+        cidr: ${4:172.17.0.0/16}
+        except:
+        - ${5:172.17.1.0/24}
+    - namespaceSelector:
+        matchLabels:
+          ${6:label}: ${7:value}
+    - podSelector:
+        matchLabels:
+          ${8:label}: ${9:value}
+    ports:
+    - protocol: TCP
+      port: ${10:1234}
+  egress:
+  - to:
+    - ipBlock:
+        cidr: ${11:10.0.0.0/24}
+    ports:
+    - protocol: TCP
+      port: ${12:1234}
+endsnippet
+
+
+snippet persistentvolume "Kubernetes PersistentVolume"
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: ${1:name}
+spec:
+  capacity:
+    storage: ${2:10}GiB
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: ${3:local-etcd}
+  local:
+    path: ${4:/mnt/storage/path/to/mountpoint}
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - ${5:nodename}
+endsnippet
+
+
+snippet persistentvolumeclaim "Kubernetes PersistentVolumeClaim"
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: ${1:name}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: ${2:10}Gi
+  storageClassName: ${3:manual}
+  ${4:selector:
+    matchLabels:
+      release: "stable"
+    matchExpressions:
+      - {key: environment, operator: In, values: [dev]}}
+endsnippet
+
+
+snippet storageclass "Kubernetes StorageClass"
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: ${1:local-storage}
+provisioner: kubernetes.io/no-provisioner
+volumeBindingMode: WaitForFirstConsumer
+reclaimPolicy: ${2:Retain}
+endsnippet
+
+snippet job "Kubernetes Job"
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ${1:name}
+spec:
+  template:
+    spec:
+      containers:
+      - name: $1
+        image: ${2:image/image}
+        command: [${3:"parts", "of", "the", "command"}]
+      restartPolicy: ${4:Never|OnFailure}
+  backoffLimit: ${5:4}
+endsnippet
+
+snippet statefulset "Kubernetes StatefulSet"
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: ${1:name}
+  labels:
+    ${2:label}: ${3:value}
+spec:
+  replicas: ${4:3}
+  selector:
+    matchLabels:
+      $2: $3
+  serviceName: $1
+  template:
+    metadata:
+      labels:
+        $2: $3
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: ${5:name}
+        image: ${6:image}
+	imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: ${7:port}
+          name: ${8:portname}
+          protocol: ${9:TCP}
+        volumeMounts:
+        - name: ${10:name}
+          mountPath: ${11:/path/inside/pod}
+  volumeClaimTemplates:
+  - metadata:
+      name: $10
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "${12:storage-class-name}"
+      resources:
+        requests:
+          storage: ${13:5}Gi
+endsnippet
+
+snippet configmap "Kubernetes ConfigMap"
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ${1:name}
+data:
+  ${2:key}: |
+    ${3:value}
 endsnippet
