@@ -6,14 +6,14 @@ metadata:
   labels:
     ${2:labelkey}: ${3:labelvalue}
 spec:
-  replicas: ${4:replicas}
+  replicas: ${4:1}
   template:
     metadata:
       labels:
         $2: $3
       ${4:annotations:
         ${5:annotationkey}: ${6:annotationvalue}
-        }
+       }
     spec:
       containers:
       - name: $1
@@ -36,23 +36,38 @@ spec:
         volumeMounts:
         - name: $13
           mountPath: ${15:/pod/path/data}
-	- name: some-configmap
-	  mountPath: /some/config/dir
+        - name: $13
+          mountPath: /some/config/dir
       volumes:
           - name: ${13:storagename}
             hostPath:
               path: ${14:/host/path}
           - emptyDir:
               medium: ""
-	  - name: some-configmap
-	    configMap:
+          - name: some-configmap
+            configMap:
               name: some-configmap
 	      items:
 	      - key: onekey
 	        path: filetomapto  # This ends up at /some/config/dir/filetomapto
       ${16:nodeSelector:
         nodetype: k8compute
-      }
+       }
+  strategy:
+    type: "RollingUpdate"
+    rollingUpdate:
+      maxUnavailable: 30%
+      maxSurge: 50%
+  minReadySeconds: 30
+  revisionHistoryLimit: 5
+endsnippet
+
+snippet "env s" "Kubernetes Envvvar from Secret"
+- name: ${1:ENVNAME}
+  valueFrom:
+    secretKeyRef:
+      name: ${2:secretname}
+      key: ${3:secretkey}
 endsnippet
 
 snippet service "Kubernetes Service" b
