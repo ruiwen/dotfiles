@@ -11,45 +11,45 @@ spec:
     metadata:
       labels:
         $2: $3
-      ${4:annotations:
+${4:  annotations:
         ${5:annotationkey}: ${6:annotationvalue}
        }
     spec:
       containers:
-      - name: $1
-        image: ${7:image}
-        imagePullPolicy: ${8:Always}
-        env:
-        - name: ${9:ENVNAME}
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.namespace
-      # - name: NAME
-      #    valueFrom:
-      #      configMapKeyRef:
-      #        name: configmap.name
-      #        key: configmap.key
-        ports:
-        - containerPort: ${10:port}
-          name: ${11:portname}
-          protocol: ${12:TCP}
-        volumeMounts:
-        - name: $13
-          mountPath: ${15:/pod/path/data}
-        - name: $13
-          mountPath: /some/config/dir
-      volumes:
-          - name: ${13:storagename}
-            hostPath:
-              path: ${14:/host/path}
-          - emptyDir:
-              medium: ""
-          - name: some-configmap
-            configMap:
-              name: some-configmap
-	      items:
-	      - key: onekey
-	        path: filetomapto  # This ends up at /some/config/dir/filetomapto
+				- name: $1
+					image: ${7:image}
+					imagePullPolicy: ${8:Always}
+					env:
+						- name: ${9:ENVNAME}
+							valueFrom:
+								fieldRef:
+									fieldPath: metadata.namespace
+					# - name: NAME
+					#    valueFrom:
+					#      configMapKeyRef:
+					#        name: configmap.name
+					#        key: configmap.key
+					ports:
+						- containerPort: ${10:port}
+							name: ${11:portname}
+							protocol: ${12:TCP}
+					volumeMounts:
+						- name: $13
+							mountPath: ${15:/pod/path/data}
+						- name: $13
+							mountPath: /some/config/dir
+				volumes:
+						- name: ${13:storagename}
+							hostPath:
+								path: ${14:/host/path}
+						- emptyDir:
+								medium: ""
+						- name: some-configmap
+							configMap:
+								name: some-configmap
+					items:
+						- key: onekey
+							path: filetomapto  # This ends up at /some/config/dir/filetomapto
       ${16:nodeSelector:
         nodetype: k8compute
        }
@@ -68,6 +68,14 @@ snippet "env s" "Kubernetes Envvvar from Secret"
     secretKeyRef:
       name: ${2:secretname}
       key: ${3:secretkey}
+endsnippet
+
+snippet "env c" "Kubernetes Envvar from ConfigMap"
+- name: ${1:NAME}
+   valueFrom:
+     configMapKeyRef:
+       name: ${2:configmap.name}
+       key: ${3:configmap.key}
 endsnippet
 
 snippet service "Kubernetes Service" b
@@ -142,18 +150,22 @@ metadata:
   annotations:
     ingress.kubernetes.io/rewrite-target: /
 spec:
+	tls:
+		- hosts:
+			- ${2:hostname.com}
   rules:
-  - host: ${2:hostname.com}
-    http:
-      paths:
-      - path: /foo
-        backend:
-          serviceName: ${3:servicename.svc.cluster.local}
-          servicePort: ${4:portnum}
-      - path: /bar
-        backend:
-          serviceName: s2
-          servicePort: 80
+    - host: $2
+      http:
+        paths:
+          - path: /foo
+            backend:
+              serviceName: ${3:servicename}
+              servicePort: ${4:portnum}
+  ${5:        - path: /bar
+            backend:
+              serviceName: s2
+              servicePort: 80
+  }
 endsnippet
 
 snippet namespace "Kubernetes Namespace"
