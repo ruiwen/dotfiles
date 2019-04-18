@@ -87,6 +87,9 @@ Plug 'wincent/terminus'
 " vim-easy-align
 Plug 'junegunn/vim-easy-align'
 
+" vimade - Fade inactive panes
+Plug 'TaDaa/vimade'
+
 " All of your Plugins must be added before the following line
 call plug#end()
 
@@ -245,6 +248,14 @@ map  N <Plug>(easymotion-prev)
 " Map easy-align
 vmap \| <Plug>(EasyAlign)
 "xmap ga <Plug>(EasyAlign)
+
+" Vimade
+" Ref: https://github.com/TaDaa/vimade/blob/master/README.md
+let g:vimade = {
+  \ "fadelevel": 0.6,
+  \ "colbufsize": 30,
+  \ "rowbufsize": 30,
+  \ "checkinterval": 32,}
 
 
 " Remove trailing spaces
