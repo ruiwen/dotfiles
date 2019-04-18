@@ -46,7 +46,10 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'SirVer/ultisnips'
 
 " vim-go
-Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } "{ 'for': 'go' }
+
+" mdempsky/gocode
+Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 
 " Neomake
 Plug 'neomake/neomake'
@@ -64,7 +67,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
 
 " deoplete go
-Plug 'zchee/deoplete-go', { 'do': 'make', 'for': 'go'}
+Plug 'deoplete-plugins/deoplete-go', { 'do': 'make', 'for': 'go'}
 
 " vim-airline
 Plug 'vim-airline/vim-airline'
