@@ -132,6 +132,7 @@ augroup filetypes
   autocmd Filetype dockerfile setlocal ts=2 sw=2 expandtab
   autocmd Filetype vim setlocal ts=2 sw=2 expandtab
   autocmd Filetype go setlocal ts=4 sw=4 sts=4 noexpandtab
+  autocmd Filetype snippets setlocal ts=2 sw=2 sts=2 noexpandtab
   autocmd CursorHold,FocusLost,BufLeave * if index(blacklist, &ft) < 0 | Neomake
 augroup END
 
