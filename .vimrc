@@ -243,7 +243,7 @@ map  n <Plug>(easymotion-next)
 map  N <Plug>(easymotion-prev)
 
 " Map easy-align
-"vmap \| <Plug>(EasyAlign)
+vmap \| <Plug>(EasyAlign)
 "xmap ga <Plug>(EasyAlign)
 
 
