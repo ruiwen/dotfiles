@@ -90,6 +90,9 @@ Plug 'junegunn/vim-easy-align'
 " vimade - Fade inactive panes
 Plug 'TaDaa/vimade'
 
+" ale
+Plug 'w0rp/ale'
+
 " All of your Plugins must be added before the following line
 call plug#end()
 
