@@ -166,7 +166,7 @@ command! R :so $MYVIMRC
 command! E :set paste!
 
 " Neovim / Deoplete
-if has('nvim') != 0
+if has('nvim')
   let g:deoplete#enable_at_startup = 1
 
   " Python 3 support
