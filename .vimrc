@@ -142,11 +142,11 @@ augroup filetypes
   autocmd CursorHold,FocusLost,BufLeave * if index(blacklist, &ft) < 0 | Neomake
 augroup END
 
-augroup golang
-  autocmd!
-  autocmd BufWritePost *.go Neomake
-  autocmd Filetype go setlocal nofoldenable
-augroup END
+" augroup golang
+"   autocmd!
+"   autocmd BufWritePost *.go Neomake
+"   autocmd Filetype go setlocal nofoldenable
+" augroup END
 
 " Allow manual folding while editing even though auto folding is on
 " augroup vimrc
@@ -154,7 +154,7 @@ augroup END
 "   au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
 " augroup END
 
-let g:go_gocode_autobuild = 0
+" let g:go_gocode_autobuild = 0
 
 " move vertically by visual line
 nnoremap j gj
