@@ -8,19 +8,33 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
+# General config
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
     if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
+      . "$HOME/.bashrc"
     fi
 fi
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+
+  # Linux Config
+  # set PATH so it includes user's private bin if it exists
+  if [ -d "$HOME/bin" ] ; then
+      PATH="$HOME/bin:$PATH"
+  fi
+
+  # Custom config
+  export PYTHONSTARTUP=~/.pythonrc
+
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+
+  # Mac OSX Config
+  export CLICOLOR=1
+  export LSCOLORS=exGxFxdxcxegedabagacad
+  export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+
 fi
 
 
-# Custom config
-export PYTHONSTARTUP=~/.pythonrc
