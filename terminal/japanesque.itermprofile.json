@@ -366,11 +366,11 @@
     "Green Component" : 0.35916060209274292
   },
   "Ansi 1 Color" : {
-    "Red Component" : 0.850494384765625,
+    "Red Component" : 1,
     "Color Space" : "sRGB",
-    "Blue Component" : 0.3758712112903595,
+    "Blue Component" : 0.44194437732112823,
     "Alpha Component" : 1,
-    "Green Component" : 0.32411342859268188
+    "Green Component" : 0.3810882639536769
   },
   "Horizontal Spacing" : 1,
   "Use Non-ASCII Font" : false,

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<!-- Based off https://terminal.sexy/#EBAQ9PTUICAguR4ugZV8-buANWV5LSAxCzRSkJCQYaGBg0UVIvvKV-uOgteP8hzFObczj9PTU -->
 <plist version="1.0">
 <dict>
 	<key>Ansi 0 Color</key>
@@ -21,13 +20,13 @@
 		<key>Alpha Component</key>
 		<real>1</real>
 		<key>Blue Component</key>
-		<real>0.3758712112903595</real>
+		<real>0.44194439053535461</real>
 		<key>Color Space</key>
 		<string>sRGB</string>
 		<key>Green Component</key>
-		<real>0.32411342859268188</real>
+		<real>0.3810882568359375</real>
 		<key>Red Component</key>
-		<real>0.850494384765625</real>
+		<real>1</real>
 	</dict>
 	<key>Ansi 10 Color</key>
 	<dict>
@@ -333,13 +332,13 @@
 		<key>Alpha Component</key>
 		<real>1</real>
 		<key>Blue Component</key>
-		<real>0.090196080505847931</real>
+		<real>0.708648681640625</real>
 		<key>Color Space</key>
 		<string>sRGB</string>
 		<key>Green Component</key>
-		<real>0.098039217293262482</real>
+		<real>0.40917503833770752</real>
 		<key>Red Component</key>
-		<real>0.10588235408067703</real>
+		<real>0.00047577731311321259</real>
 	</dict>
 </dict>
 </plist>
