@@ -64,7 +64,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " deoplete jedi
-Plug 'zchee/deoplete-jedi'
+Plug 'deoplete-plugins/deoplete-jedi'
 
 " deoplete go
 Plug 'deoplete-plugins/deoplete-go', { 'do': 'make', 'for': 'go'}
@@ -92,6 +92,9 @@ Plug 'TaDaa/vimade'
 
 " ale
 Plug 'w0rp/ale'
+
+" vim-sensible
+Plug 'tpope/vim-sensible'
 
 " All of your Plugins must be added before the following line
 call plug#end()
@@ -255,7 +258,7 @@ vmap \| <Plug>(EasyAlign)
 " Vimade
 " Ref: https://github.com/TaDaa/vimade/blob/master/README.md
 let g:vimade = {
-  \ "fadelevel": 0.6,
+  \ "fadelevel": 0.9,
   \ "colbufsize": 30,
   \ "rowbufsize": 30,
   \ "checkinterval": 32,}
