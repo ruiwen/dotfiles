@@ -16,40 +16,40 @@ ${4:  annotations:
        }
     spec:
       containers:
-				- name: $1
-					image: ${7:image}
-					imagePullPolicy: ${8:Always}
-					env:
-						- name: ${9:ENVNAME}
-							valueFrom:
-								fieldRef:
-									fieldPath: metadata.namespace
-					# - name: NAME
-					#    valueFrom:
-					#      configMapKeyRef:
-					#        name: configmap.name
-					#        key: configmap.key
-					ports:
-						- containerPort: ${10:port}
-							name: ${11:portname}
-							protocol: ${12:TCP}
-					volumeMounts:
-						- name: $13
-							mountPath: ${15:/pod/path/data}
-						- name: $13
-							mountPath: /some/config/dir
-				volumes:
-						- name: ${13:storagename}
-							hostPath:
-								path: ${14:/host/path}
-						- emptyDir:
-								medium: ""
-						- name: some-configmap
-							configMap:
-								name: some-configmap
-					items:
-						- key: onekey
-							path: filetomapto  # This ends up at /some/config/dir/filetomapto
+        - name: $1
+          image: ${7:image}
+          imagePullPolicy: ${8:Always}
+          env:
+            - name: ${9:ENVNAME}
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          # - name: NAME
+          #    valueFrom:
+          #      configMapKeyRef:
+          #        name: configmap.name
+          #        key: configmap.key
+          ports:
+            - containerPort: ${10:port}
+              name: ${11:portname}
+              protocol: ${12:TCP}
+          volumeMounts:
+            - name: $13
+              mountPath: ${15:/pod/path/data}
+            - name: $13
+              mountPath: /some/config/dir
+        volumes:
+            - name: ${13:storagename}
+              hostPath:
+                path: ${14:/host/path}
+            - emptyDir:
+                medium: ""
+            - name: some-configmap
+              configMap:
+                name: some-configmap
+                items:
+                  - key: onekey
+                    path: filetomapto  # This ends up at /some/config/dir/filetomapto
       ${16:nodeSelector:
         nodetype: k8compute
        }
@@ -372,25 +372,25 @@ spec:
     spec:
       terminationGracePeriodSeconds: 10
       containers:
-      - name: ${5:name}
-        image: ${6:image}
-	imagePullPolicy: IfNotPresent
-        ports:
-        - containerPort: ${7:port}
-          name: ${8:portname}
-          protocol: ${9:TCP}
-        volumeMounts:
-        - name: ${10:name}
-          mountPath: ${11:/path/inside/pod}
+        - name: ${5:name}
+          image: ${6:image}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: ${7:port}
+              name: ${8:portname}
+              protocol: ${9:TCP}
+          volumeMounts:
+            - name: ${10:name}
+              mountPath: ${11:/path/inside/pod}
   volumeClaimTemplates:
-  - metadata:
-      name: $10
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "${12:storage-class-name}"
-      resources:
-        requests:
-          storage: ${13:5}Gi
+    - metadata:
+        name: $10
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        storageClassName: "${12:storage-class-name}"
+        resources:
+          requests:
+            storage: ${13:5}Gi
 endsnippet
 
 snippet configmap "Kubernetes ConfigMap"
