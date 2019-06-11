@@ -402,3 +402,23 @@ data:
   ${2:key}: |
     ${3:value}
 endsnippet
+
+snippet pod "Kubernetes Pod"
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ${1:name}
+  labels:
+    ${2:label}: ${3:value}
+spec:
+  containers:
+		- name: $1
+			image: ${4:image}
+			# resources:
+			# 	limits:
+			# 		memory: "200Mi"
+			# 	requests:
+			# 		memory: "100Mi"
+			command: ["${5:/bin/bash}"]
+			args: ["${6:-c}"]
+endsnippet
